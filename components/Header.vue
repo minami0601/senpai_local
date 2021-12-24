@@ -1,91 +1,96 @@
 <template>
-  <v-app>
-    <v-navigation-drawer
+  <v-car
+	>
+    <v-toolbar
+			light
+			class="px-16"
+			height="80"
+		>
+			<v-row class="header__inner mx-auto">
+				<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+				<v-toolbar-title>ロゴ</v-toolbar-title>
+
+				<v-btn plain text>
+					<v-icon>mdi-magnify</v-icon>
+					メンターを探す
+				</v-btn>
+
+
+				<v-spacer></v-spacer>
+
+
+				<v-btn
+					class="mr-10 font-weight-black"
+					large
+				>
+					ログイン
+				</v-btn>
+
+				<v-btn
+					large
+					class="font-weight-black"
+					color="primary"
+				>
+					新規登録
+				</v-btn>
+
+			</v-row>
+    </v-toolbar>
+
+		<v-navigation-drawer
       v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
+      absolute
+      temporary
     >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
+          <v-list-item>
+            <v-list-item-title>Foo</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Bar</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Fizz</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Buzz</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
-  </v-app>
+  </v-car>
 </template>
 
 <script>
-export default {
-  name: Header,
-  data() {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+  export default {
+    data() {
+			return {
+				drawer: false,
+				group: null,
+			}
+    },
 
-    }
-  },
-}
+    watch: {
+      group () {
+        this.drawer = false
+      },
+    },
+  }
 </script>
+
+<style scoped>
+	.header__inner {
+		max-width: 1000px;
+	}
+</style>
