@@ -1,7 +1,9 @@
 <template>
-  <v-app>
+  <v-app id="inspire">
     <Header />
-    <nuxt />
+    <v-main>
+      <nuxt />
+    </v-main>
     <Footer />
   </v-app>
 </template>
