@@ -1,9 +1,7 @@
 <template>
-    <v-row justify="center" class="my-15">
-      <v-col cols="6">
-        <Mentor :mentores="mentores" />
-      </v-col>
-    </v-row>
+  <v-container class="my-10">
+      <Mentor />
+  </v-container>
 </template>
 
 <script>
@@ -16,7 +14,7 @@ export default {
   },
   data() {
     return {
-      mentores:[
+      mentors:[
         {
           id: 1,
           name: "aaa",
