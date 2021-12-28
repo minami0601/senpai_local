@@ -1,4 +1,5 @@
 <template>
+
   <v-app>
     <h2 class="title text-h4 text-center font-weight-bold">
       おすすめメンター
@@ -57,6 +58,7 @@
     </v-row>
     </v-container>
   </v-app>
+
 </template>
 
 <script>
@@ -65,11 +67,13 @@ export default {
   name: 'IndexPage',
   data() {
     return {
+
       mentors: [{}],
       payPlans: {
         1: "月額",
         2: "単発",
       }
+
     }
   },
   async asyncData({ app }) {
