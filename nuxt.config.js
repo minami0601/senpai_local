@@ -52,7 +52,7 @@ export default {
     proxy: true,
   },
   proxy: {
-    '/api/': 'http://192.168.33.11',
+    '/api/': 'http://192.168.56.11',
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

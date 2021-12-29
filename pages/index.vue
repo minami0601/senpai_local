@@ -22,7 +22,7 @@
             <v-row>
               <v-col cols="12">
                 レベル
-                <span>{{ mentor.senpai_level}}</span>
+                <span>{{ levelListView[mentor.senpai_level] }}</span>
               </v-col>
               <v-col cols="12">
                 タグ
@@ -50,7 +50,7 @@
               </v-list-item-content>
             </v-list-item>
             <dev class="card-price" >
-              <p>料金：{{ payPlans[mentor.plan.payment_plan]}} {{ mentor.plan.price}}円～</p>
+              <p>料金：{{ payPlanView[mentor.plan.payment_plan]}} {{ mentor.plan.price}}円～</p>
             </dev>
           </v-card-actions>
         </v-card>
@@ -67,18 +67,26 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-
       mentors: [{}],
-      payPlans: {
+      payPlanView: {
         1: "月額",
         2: "単発",
+      },
+      levelListView: {
+        1: '学習経験なし',
+        2: 'アプリ開発経験あり',
+        3: 'チーム開発経験あり',
+        4: '転職活動中',
+        5: 'エンジニア',
+        6: 'フリーランス',
+        7: '事業経営者',
       }
 
     }
   },
   async asyncData({ app }) {
     const response = await app.$axios.$get('/api/public/mentor_recommend');
-    return { mentors: response.mentor_list };
+    return { mentors: response.mentor_list};
   }
 }
 </script>
