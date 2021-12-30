@@ -22,7 +22,18 @@
             <v-row>
               <v-col cols="12">
                 レベル
-                <span>{{ levelListView[mentor.senpai_level] }}</span>
+                <span></span>
+                <v-chip
+                  class="ma-2"
+                  color="indigo darken-3"
+                  outlined
+                  pill
+                >
+                  {{ levelListView[mentor.senpai_level] }}
+                  <v-icon right>
+                    mdi-account-outline
+                  </v-icon>
+                </v-chip>
               </v-col>
               <v-col cols="12">
                 タグ
@@ -32,6 +43,7 @@
                   :key="tag"
                   link
                   class="mx-1"
+                  color="primary"
                 >{{ tag.content}}</v-chip>
               </v-col>
             </v-row>
@@ -50,7 +62,7 @@
               </v-list-item-content>
             </v-list-item>
             <dev class="card-price" >
-              <p>料金：{{ payPlanView[mentor.plan.payment_plan]}} {{ mentor.plan.price}}円～</p>
+              <p>料金：<span class="font-weight-bold">{{ payPlanView[mentor.plan.payment_plan]}} {{ mentor.plan.price}}円～</span></p>
             </dev>
           </v-card-actions>
         </v-card>
