@@ -1,30 +1,29 @@
-import Vuex from 'vuex'
 import axios from 'axios'
+import { getMentorRecommendAll } from "@/service/mentor";
 
-export default () => new Vuex.Store({
-  state: {
-    mentors:[]
-  },
-  getters: {
-    mentors: (state) => state.mentors
-  },
-  mutations: {
-    setMentors (state, { mentors }) {
-      state.mentors = mentors
-    }
-  },
-  actions: {
-    async fetchMentors({ commit }) {
-      await axios.get('api/public/mentor_recommend',{
-        params: {
-          offset: 4,
-          limit: 3
-        }
-      }).then((response) => {
-          commit('setMentors', { mentors: response.data })
-      }).catch((error) => {
-        console.log(error.message);
-      })
-    }
-  }
+export const state = () => ({
+  mentors: []
 })
+
+export const getters = {
+  mentors (state) {
+    return state.mentors
+  }
+}
+export const mutations = {
+	updateMentorRecommendAll(state, value) {
+		state.mentors = value;
+	}
+}
+
+export const actions = {
+	async getMentorRecommendAll({ commit }) {
+		try {
+      const response = await axios.get('/api/public/mentor_recommend')
+			commit("updateMentorRecommendAll", response.data.mentor_list);
+		} catch(error) {
+			alert("エラーが発生しました");
+			commit("updateMentorRecommendAll", [])
+		}
+	}
+}

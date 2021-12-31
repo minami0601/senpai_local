@@ -74,12 +74,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'IndexPage',
-  data() {
+  async asyncData ({ store }) {
+    await store.dispatch('getMentorRecommendAll')
     return {
-      mentors: [{}],
       payPlanView: {
         1: "月額",
         2: "単発",
@@ -93,12 +94,10 @@ export default {
         6: 'フリーランス',
         7: '事業経営者',
       }
-
     }
   },
-  async asyncData({ app }) {
-    const response = await app.$axios.$get('/api/public/mentor_recommend');
-    return { mentors: response.mentor_list};
+  computed: {
+    ...mapGetters(['mentors'])
   }
 }
 </script>
