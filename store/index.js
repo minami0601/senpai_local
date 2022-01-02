@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { getMentorRecommendAll } from "@/service/mentor";
 
 export const state = () => ({
   mentors: []
