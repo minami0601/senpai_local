@@ -10,65 +10,75 @@
           v-for="(mentor) in displayLists"
           :key="mentor.id"
           cols="12"
-          sm="8"
+          sm="12"
           md="6"
           class="card-item"
         >
-          <v-card class="px-2 py-2" height="270px">
-            <v-card-title class="font-weight-bold">
-              {{ mentor.plan.title}}
-            </v-card-title>
-            <v-card-text>
-              <v-row>
-                <v-col cols="12">
-                  レベル
-                  <span></span>
-                  <v-chip
-                    class="ma-2"
-                    color="indigo darken-3"
-                    outlined
-                    pill
-                  >
-                    {{ levelListView[mentor.senpai_level] }}
-                    <v-icon right>
-                      mdi-account-outline
-                    </v-icon>
-                  </v-chip>
-                </v-col>
-                <v-col cols="12">
-                  タグ
-                  <span ></span>
-                  <v-chip
-                    v-for="tag in mentor.tags"
-                    :key="tag"
-                    link
-                    class="mx-1"
-                    color="primary"
-                  >{{ tag.content}}</v-chip>
-                </v-col>
-              </v-row>
-            </v-card-text>
-            <v-card-actions>
-              <v-list-item class="grow card-icon">
-                <v-list-item-avatar color="grey darken-3">
-                  <v-img
-                    class="elevation-6"
-                    alt=""
-                    src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                  ></v-img>
-                </v-list-item-avatar>
-                <v-list-item-content>
-                  <v-list-item-title>{{ mentor.name}}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <div class="card-price" >
-                <p>料金：<span class="font-weight-bold">{{ payPlanView[mentor.plan.payment_plan]}} {{ mentor.plan.price}}円～</span></p>
-              </div>
-            </v-card-actions>
+          <v-card class="py-3">
+            <v-row>
+              <v-col cols="4">
+                <v-list-item class="grow card-icon">
+                  <v-list-item-avatar size="100" class="mx-auto mt-10" color="grey darken-3">
+                    <v-img
+                      class="elevation-6 mx-auto"
+                      alt=""
+                      src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+                    ></v-img>
+                  </v-list-item-avatar>
+                </v-list-item>
+                <v-list-item >
+                  <v-list-item-title class="text-h6 font-weight-bold text-center">
+                    {{ mentor.name}}
+                  </v-list-item-title>
+                </v-list-item>
+              </v-col>
+              <v-col cols="8">
+                <v-card-title class="font-weight-bold">
+                  {{ mentor.plan.title}}
+                </v-card-title>
+                <v-card-text>
+                  <v-row>
+                    <v-col cols="12">
+                      <span>レベル</span>
+                      <v-chip
+                        class="ma-2"
+                        link
+                        color="indigo darken-3"
+                        outlined
+                        pill
+                      >
+                        {{ levelListView[mentor.senpai_level] }}
+                        <v-icon right>
+                          mdi-account-outline
+                        </v-icon>
+                      </v-chip>
+                    </v-col>
+                    <v-col cols="12">
+                      <span>スキル</span>
+                      <v-chip
+                        v-for="tag in mentor.tags"
+                        :key="tag"
+                        link
+                        class="mx-1"
+                        color="primary"
+                      >
+                        {{ tag.content}}
+                      </v-chip>
+                    </v-col>
+                    <v-col cols="12">
+                      <span>料金</span>
+                      <span class="font-weight-bold ml-5 text-h6">
+                        {{ payPlanView[mentor.plan.payment_plan]}} {{ mentor.plan.price}}円～
+                      </span>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+              </v-col>
+            </v-row>
           </v-card>
         </v-col>
       </v-row>
-      <v-content>
+      <v-content v-if="mentors.length > 20">
         <div class="text-center">
           <v-pagination
             v-model="page"
@@ -92,7 +102,7 @@ export default {
     return {
       page: 1,
       displayLists: [],
-      pageSize: 1,
+      pageSize: 20,
       length:0,
       payPlanView: {
         1: '月額',
@@ -128,21 +138,5 @@ export default {
   .content {
     margin: 0 auto;
     max-width: 1200px;
-  }
-  .card-item {
-    position: relative;
-  }
-  .card-item .card-price {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-  }
-  .card-item .card-icon {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-  }
-  .title {
-    margin: 60px 0;
   }
 </style>
