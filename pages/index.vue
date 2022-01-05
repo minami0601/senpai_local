@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <h2 class="title text-h4 text-center font-weight-bold">
+    <h2 class="my-10 text-h4 text-center font-weight-bold">
       おすすめメンター
     </h2>
     <v-container>
@@ -31,7 +31,7 @@ export default {
     Mentor
   },
   async asyncData ({ store }) {
-    await store.dispatch('getMentorRecommendAll')
+    await store.dispatch('mentor/getMentorRecommendAll')
     return {
       page: 1,
       displayLists: [],
@@ -39,8 +39,10 @@ export default {
       length:0,
     }
   },
-  computed : {
-    ...mapGetters(['mentors'])
+  computed: {
+    ...mapGetters('mentor', [
+      'mentors'
+    ])
   },
   mounted: function(){
     this.length = Math.ceil(this.mentors.length/this.pageSize);
@@ -53,10 +55,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .content {
-    margin: 0 auto;
-    max-width: 1200px;
-  }
-</style>
