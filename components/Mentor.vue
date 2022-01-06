@@ -20,15 +20,13 @@
                 />
               </v-list-item-avatar>
             </v-list-item>
-            <v-list-item>
-              <v-list-item-title class="text-h6 font-weight-bold text-center">
-                {{ mentor.name }}
-              </v-list-item-title>
+            <v-list-item class="font-weight-bold">
+              <a href="#" class="name-link">{{ mentor.name }}</a>
             </v-list-item>
           </v-col>
           <v-col cols="8">
             <v-card-title class="font-weight-bold">
-              {{ mentor.plan.title }}
+              <a href="" class="link-text">{{ mentor.plan.title }}</a>
             </v-card-title>
             <v-card-text>
               <v-row>
@@ -41,7 +39,7 @@
                     outlined
                     pill
                   >
-                    {{ levelListView[mentor.senpai_level] }}
+                    {{ levelList(mentor.senpai_level) }}
                     <v-icon right>
                       mdi-account-outline
                     </v-icon>
@@ -62,7 +60,7 @@
                 <v-col cols="12">
                   <span>料金</span>
                   <span class="font-weight-bold ml-5 text-h6">
-                    {{ payPlanView[mentor.plan.payment_plan] }} {{ mentor.plan.price }}円～
+                    {{ payPlan(mentor.plan.payment_plan) }} {{ mentor.plan.price }}円～
                   </span>
                 </v-col>
               </v-row>
@@ -82,31 +80,32 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      payPlanView: {
-        1: '月額',
-        2: '単発'
-      },
-      levelListView: {
-        1: '学習経験なし',
-        2: 'アプリ開発経験あり',
-        3: 'チーム開発経験あり',
-        4: '転職活動中',
-        5: 'エンジニア',
-        6: 'フリーランス',
-        7: '事業経営者'
+  computed: {
+    levelList: function() {
+      return function(level) {
+        return this.$LEVEL_LIST[level]
+      }
+    },
+    payPlan: function() {
+      return function(plan) {
+        return this.$PAY_PLAN[plan]
       }
     }
   },
-  methods: {
-    levelValue (senpaiLevel) {
-      return this.levelListView[senpaiLevel]
-    },
-    payPlanValue (payPlan) {
-      return this.payPlanView[payPlan]
-    }
-  }
 }
 </script>
 
+<style scoped>
+  .link-text, .name-link {
+    color: #000000;
+    text-decoration: none;
+  }
+  .link-text:hover, .name-link:hover {
+    opacity: .6;
+  }
+  .name-link {
+    font-size: 1.25em;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
