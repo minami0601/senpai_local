@@ -7,7 +7,7 @@
       <Mentor
         :displayLists="displayLists"
       />
-      <v-content v-if="mentors.length > 2">
+      <v-content v-if="mentors.length > 20">
         <div class="text-center">
           <v-pagination
             v-model="page"
