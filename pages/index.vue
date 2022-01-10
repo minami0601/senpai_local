@@ -4,7 +4,7 @@
       おすすめメンター
     </h2>
     <v-container>
-      <Mentor
+      <Mentors
         :displayLists="displayLists"
       />
       <v-content v-if="mentors.length > 20">
@@ -23,12 +23,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Mentor from '@/components/Mentor'
+import Mentors from '@/components/Mentors'
 
 export default {
   name: 'IndexPage',
   components: {
-    Mentor
+    Mentors
   },
   async asyncData ({ store }) {
     await store.dispatch('mentor/getMentorRecommendAll')
