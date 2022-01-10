@@ -114,7 +114,7 @@ export default {
   @media screen and (max-width: 600px) {
     /* 600px以下に適用されるCSS） */
     .name-link {
-      font-size: 12px;
+      font-size: 1em;
     }
     .price-text {
       font-size: 1em;
