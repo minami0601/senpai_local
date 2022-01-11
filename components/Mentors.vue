@@ -2,7 +2,7 @@
   <v-row class="content">
     <v-col
       v-for="(mentor) in displayLists"
-      :key="mentor.id"
+      :key="mentor.mentor_id"
       cols="12"
       sm="12"
       md="6"
@@ -49,7 +49,7 @@
                   <span class="sub-title">スキル</span>
                   <v-chip
                     v-for="tag in mentor.tags"
-                    :key="tag"
+                    :key="tag.id"
                     link
                     class="mx-1 chip"
                     color="primary"
