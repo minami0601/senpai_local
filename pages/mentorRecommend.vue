@@ -12,6 +12,7 @@
           <v-pagination
             v-model="page"
             :length="length"
+            :total-visible="3"
             @input = "pageChange"
           ></v-pagination>
         </div>
